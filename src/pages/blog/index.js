@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import Layout from "../../components/layout";
 
 const BlogPage = ({ data }) => {
@@ -7,9 +7,7 @@ const BlogPage = ({ data }) => {
 		<Layout pageTitle="Blog Posts">
 			{data.allMicrocmsBlog.edges.map(({ node }) => (
 				<article key={node.blogId}>
-					<h2>
-						<Link to={`${node.blogId}`}>{node.title}</Link>
-					</h2>
+					<h2>{node.title}</h2>
 					<span>{node.publishedAt}</span>
 					<div
 						dangerouslySetInnerHTML={{
