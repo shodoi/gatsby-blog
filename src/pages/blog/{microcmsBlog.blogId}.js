@@ -3,12 +3,11 @@ import { graphql } from "gatsby";
 import Layout from "../../components/layout";
 
 const BlogPage = ({ data }) => (
-	<Layout>
-		<h1>{data.microcmsBlog.title}</h1>
+	<Layout pageTitle={data.microcmsBlog.title}>
 		<span>{data.microcmsBlog.publishedAt}</span>
 		<div
 			dangerouslySetInnerHTML={{
-				__html: `${data.microcmsBlog.content}`,
+				__html: `${data.microcmsBlog.childConvertHtml.convertedHtml}`,
 			}}
 		></div>
 	</Layout>
@@ -18,9 +17,14 @@ export const query = graphql`
 	query ($id: String) {
 		microcmsBlog(id: { eq: $id }) {
 			title
-			content
 			blogId
 			createdAt
+			childConvertHtml {
+				html
+				plainText
+				listOfContents
+				convertedHtml
+			}
 		}
 	}
 `;

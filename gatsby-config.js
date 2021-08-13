@@ -31,7 +31,17 @@ module.exports = {
 					{
 						endpoint: "blog",
 					},
+					{
+						endpoint: "service",
+					},
 				],
+			},
+		},
+		{
+			resolve: "@mako-tos/gatsby-transformer-for-microcms",
+			options: {
+				mediaType: "MicrocmsBlog",
+				field: "content",
 			},
 		},
 	],
