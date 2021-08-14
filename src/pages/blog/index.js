@@ -1,10 +1,13 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
+
 import Layout from "../../components/layout";
+import Seo from "../../components/seo";
 
 const BlogPage = ({ data }) => {
 	return (
-		<Layout pageTitle="Blog Posts">
+		<Layout>
+			<Seo title="My Blog" />
 			{data.allMicrocmsBlog.edges.map(({ node }) => (
 				<article key={node.blogId}>
 					<h2>

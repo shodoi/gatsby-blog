@@ -1,7 +1,10 @@
 import * as React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import PropTypes from "prop-types";
+import { useStaticQuery, graphql } from "gatsby";
 
-const Layout = ({ pageTitle, children }) => {
+import Header from "./header";
+
+const Layout = ({ children }) => {
 	const data = useStaticQuery(graphql`
 		query {
 			site {
@@ -13,27 +16,16 @@ const Layout = ({ pageTitle, children }) => {
 	`);
 
 	return (
-		<div>
-			<title>
-				{pageTitle} | {data.site.siteMetadata.title}
-			</title>
-			<header>{data.site.siteMetadata.title}</header>
-			<nav>
-				<ul>
-					<li>
-						<Link to="/">HOME</Link>
-					</li>
-					<li>
-						<Link to="/blog">Blog</Link>
-					</li>
-				</ul>
-			</nav>
-			<main>
-				<h1>{pageTitle}</h1>
-				{children}
-			</main>
-		</div>
+		<>
+			<Header siteTitle={data.site.siteMetadata.title} />
+			<main>{children}</main>
+			<footer>site footer</footer>
+		</>
 	);
+};
+
+Layout.propTypes = {
+	children: PropTypes.node.isRequired,
 };
 
 export default Layout;

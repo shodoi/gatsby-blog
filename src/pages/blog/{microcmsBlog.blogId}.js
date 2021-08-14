@@ -1,10 +1,13 @@
 import * as React from "react";
 import { graphql } from "gatsby";
+
 import Layout from "../../components/layout";
+import Seo from "../../components/seo";
 
 const BlogPage = ({ data }) => (
-	<Layout pageTitle={data.microcmsBlog.title}>
-		<span>{data.microcmsBlog.publishedAt}</span>
+	<Layout>
+		<Seo title={data.microcmsBlog.title} />
+		<span>{data.microcmsBlog.createdAt}</span>
 		<div
 			dangerouslySetInnerHTML={{
 				__html: `${data.microcmsBlog.childConvertHtml.convertedHtml}`,
