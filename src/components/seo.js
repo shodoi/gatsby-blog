@@ -2,6 +2,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
+import { useLocation } from "@reach/router";
 
 const Seo = ({ description, lang, meta, title }) => {
 	const { site } = useStaticQuery(
@@ -20,6 +21,8 @@ const Seo = ({ description, lang, meta, title }) => {
 
 	const metaDescription = description || site.siteMetadata.description;
 	const defaultTitle = site.siteMetadata.title;
+	const location = useLocation();
+	const isRoot = location.pathname === "/";
 
 	return (
 		<Helmet
@@ -27,7 +30,9 @@ const Seo = ({ description, lang, meta, title }) => {
 				lang,
 			}}
 			title={title}
-			titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+			titleTemplate={
+				isRoot ? `%s` : defaultTitle ? `%s | ${defaultTitle}` : null
+			}
 			meta={[
 				{
 					name: `description`,
